@@ -1,0 +1,10 @@
+.ck-editor__editable_inline {
+  height: 200px !important;
+  overflow-y: scroll;
+  font-family: Inter, sans-serif !important;
+}
+.ck-dropdown__panel {
+  max-height: 200px !important;
+  overflow-y: scroll;
+  z-index: 500;
+}

@@ -1,0 +1,77 @@
+/* Universal reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h1 { font-size: 2em; font-weight: bold; }
+h2 { font-size: 1.5em; font-weight: bold; }
+h3 { font-size: 1.17em; font-weight: bold; }
+h4 { font-size: 1em; font-weight: bold; }
+h5 { font-size: 0.83em; font-weight: bold; }
+h6 { font-size: 0.67em; font-weight: bold; }
+
+/* Links */
+a {
+  text-decoration: none;
+  color: blue;
+  cursor: pointer;
+}
+
+/* Inputs */
+input, textarea, button, select {
+  border: none;
+  background: none;
+}
+
+button {
+  padding: 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+}
+
+/* Blockquote */
+blockquote {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid #ccc;
+}
+
+/* Lists */
+ul {
+  display: block;
+  list-style-type: disc;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+ol {
+  display: block;
+  list-style-type: decimal;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+/* Text size helpers */
+.text-tiny { font-size: 0.7em; }
+.text-small { font-size: 0.85em; }
+.text-big { font-size: 1.4em; }
+.text-huge { font-size: 1.8em; }
