@@ -90,7 +90,7 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
         <TitleComponent text={title} /> :
         <p style={{ color: error ? "red" : "" }}>{title}{isRequired && "*"}</p>
       }
-      <Wrapper style={{ border: error ? "2px solid red" : "" }}>
+      <Wrapper style={{ border: error ? "0.5px solid red" : "" }}>
         <CKEditor
           ref={editorRef}
           editor={CustomEditor as any}
