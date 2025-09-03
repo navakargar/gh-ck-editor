@@ -11,12 +11,34 @@ const App: React.FC = () => {
     setValue(newValue);
   };
 
+  const ErrorComponent: React.FC<{ text: string }> = ({ text }) => <p style={{ color: "red" }}>{text}</p>
+  const TitleComponent: React.FC<{ text: string }> = ({ text }) => <p style={{ color: "gray" }}>{text}</p>
+  const HelperTextComponent: React.FC<{ text: string }> = ({ text }) => <p style={{ color: "yellow" }}>{text}</p>
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-      <h1>CKEditor React Component Demo</h1>
       <CKEditorComponent
         value={value}
         onChangeValue={handleChange}
+        injectionText="hi"
+        error={true}
+        helperText="Helper Text"
+        HelperTextComponent={HelperTextComponent}
+        title="Title"
+        // TitleComponent={TitleComponent}
+        // ResetWrapper={}
+        // toolbar={['heading', '|', 'bold']}
+        heading={[{
+          model: 'heading1' as const,
+          view: 'h1',
+          title: 'Heading 1',
+          class: 'ck-heading_heading1',
+        }]}
+        fontFamily={['Arial, Helvetica, sans-serif', 'Courier New, Courier, monospace', 'Georgia, serif',]}
+        fontSize={['tiny', 'small']}
+        disabled={false}
+        isRequired
+        style={{ fontFamily: "Helvetica, sans-serif", fontSize: "50px" }}
+        className=""
       />
       <HtmlPreviewComponent html={value} />
     </div>
@@ -32,7 +54,23 @@ if (rootElement) {
 
 // Export the component for library use
 const CKEditor: React.FC<ICKEditorComponentProps> = (props: ICKEditorComponentProps) => {
-  const { value, onChangeValue, injectionText, error, ErrorComponent, ResetWrapper, toolbar, disabled } = props;
+  const { value,
+    onChangeValue,
+    injectionText,
+    error,
+    helperText,
+    HelperTextComponent,
+    title,
+    TitleComponent,
+    ResetWrapper,
+    toolbar,
+    heading,
+    fontFamily,
+    fontSize,
+    disabled,
+    isRequired,
+    style,
+    className } = props;
 
   return (
     <>
@@ -41,10 +79,19 @@ const CKEditor: React.FC<ICKEditorComponentProps> = (props: ICKEditorComponentPr
         onChangeValue={onChangeValue}
         injectionText={injectionText}
         error={error}
-        ErrorComponent={ErrorComponent}
+        helperText={helperText}
+        HelperTextComponent={HelperTextComponent}
+        title={title}
+        TitleComponent={TitleComponent}
         ResetWrapper={ResetWrapper}
         toolbar={toolbar}
+        heading={heading}
+        fontFamily={fontFamily}
+        fontSize={fontSize}
         disabled={disabled}
+        isRequired={isRequired}
+        style={style}
+        className={className}
       />
     </>
   );

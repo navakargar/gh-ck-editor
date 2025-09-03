@@ -1,4 +1,5 @@
 import path from 'path';
+import nodeExternals from 'webpack-node-externals';
 
 export default {
   entry: './src/index.tsx',
@@ -18,12 +19,15 @@ export default {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
   },
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
-    '@ckeditor/ckeditor5-react': '@ckeditor/ckeditor5-react',
-    '@ckeditor/ckeditor5-build-classic': '@ckeditor/ckeditor5-build-classic',
-  },
+ externals: [
+    nodeExternals(),
+    {
+      react: 'react',
+      'react-dom': 'react-dom',
+      '@ckeditor/ckeditor5-react': '@ckeditor/ckeditor5-react',
+      '@ckeditor/ckeditor5-build-classic': '@ckeditor/ckeditor5-build-classic',
+    }
+  ]
 };
 
 
