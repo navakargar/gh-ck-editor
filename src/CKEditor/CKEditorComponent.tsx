@@ -85,11 +85,10 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
 
   return (
     <div style={style} className={className}>
-      {title &&
-        TitleComponent ?
-        <TitleComponent text={title} /> :
-        <p style={{ color: error ? "red" : "" }}>{title}{isRequired && "*"}</p>
-      }
+
+      {title && <p style={{ color: error ? "red" : "" }}>{title}{isRequired && "*"}</p>}
+      {TitleComponent && !title && <TitleComponent />}
+
       <Wrapper style={{ border: error ? "0.5px solid red" : "" }}>
         <CKEditor
           ref={editorRef}
@@ -102,11 +101,9 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
           disabled={disabled}
         />
       </Wrapper >
-      {helperText &&
-        HelperTextComponent ?
-        <HelperTextComponent text={helperText} /> :
-        <p>{helperText}</p>
-      }
+      
+      {helperText && <p>{helperText}</p>}
+      {HelperTextComponent && !helperText && <HelperTextComponent />}
     </div>
   );
 };
