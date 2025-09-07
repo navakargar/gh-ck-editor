@@ -1,54 +1,77 @@
 /* Universal reset */
-* {
+.html-preview * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 /* Headings */
-h1 { font-size: 2em; font-weight: bold; }
-h2 { font-size: 1.5em; font-weight: bold; }
-h3 { font-size: 1.17em; font-weight: bold; }
-h4 { font-size: 1em; font-weight: bold; }
-h5 { font-size: 0.83em; font-weight: bold; }
-h6 { font-size: 0.67em; font-weight: bold; }
+.html-preview h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.html-preview h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.html-preview h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.html-preview h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.html-preview h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+.html-preview h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+}
 
 /* Links */
-a {
+.html-preview a {
   text-decoration: none;
-  color: blue;
+  color: red;
   cursor: pointer;
 }
 
 /* Inputs */
-input, textarea, button, select {
+.html-preview :is(input, textarea, button, select) {
   border: none;
   background: none;
 }
 
-button {
+.html-preview button {
   padding: 0;
 }
 
 /* Images */
-img {
+.html-preview img {
   max-width: 100%;
   height: auto;
 }
 
 /* Tables */
-table {
+.html-preview table {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid black;
 }
 
-th, td {
+.html-preview :is(th, td) {
   border: 1px solid black;
 }
 
 /* Blockquote */
-blockquote {
+.html-preview blockquote {
   margin-left: 1rem;
   margin-right: 1rem;
   padding-left: 1rem;
@@ -56,14 +79,14 @@ blockquote {
 }
 
 /* Lists */
-ul {
+.html-preview ul {
   display: block;
   list-style-type: disc;
   margin: 1em 0;
   padding-left: 40px;
 }
 
-ol {
+.html-preview ol {
   display: block;
   list-style-type: decimal;
   margin: 1em 0;
@@ -71,7 +94,18 @@ ol {
 }
 
 /* Text size helpers */
-.text-tiny { font-size: 0.7em; }
-.text-small { font-size: 0.85em; }
-.text-big { font-size: 1.4em; }
-.text-huge { font-size: 1.8em; }
+.html-preview .text-tiny {
+  font-size: 0.7em;
+}
+
+.html-preview .text-small {
+  font-size: 0.85em;
+}
+
+.html-preview .text-big {
+  font-size: 1.4em;
+}
+
+.html-preview .text-huge {
+  font-size: 1.8em;
+}
