@@ -101,9 +101,9 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
           disabled={disabled}
         />
       </Wrapper >
-      
-      {helperText && <p>{helperText}</p>}
-      {HelperTextComponent && !helperText && <HelperTextComponent />}
+
+      {error && helperText && <p>{helperText}</p>}
+      {error && HelperTextComponent && !helperText && <HelperTextComponent />}
     </div>
   );
 };
