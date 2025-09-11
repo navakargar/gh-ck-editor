@@ -1,22 +1,22 @@
-import React from 'react';
-import "./HtmlPreview.css";
-import { domSanitizer } from './utils';
+import React from "react";
+import { domSanitizer } from "./utils";
 
 export interface IHtmlPreviewComponentProps {
   html: string;
 }
 
-export default function HtmlPreviewComponent(props: IHtmlPreviewComponentProps) {
+export default function HtmlPreviewComponent(
+  props: IHtmlPreviewComponentProps
+) {
   const { html } = props;
 
   const sanitizedHtml = domSanitizer(html);
 
-
   return (
     <div
-      className='html-preview'
+      className="html-preview"
       dangerouslySetInnerHTML={{
-        __html: sanitizedHtml || '',
+        __html: sanitizedHtml || "",
       }}
     />
   );
