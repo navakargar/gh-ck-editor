@@ -1,6 +1,6 @@
 {
   "name": "gh-ck-editor",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -10,10 +10,15 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
+      "module": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
+    "./styles.css": "./dist/styles.css",
     "./package.json": "./package.json"
   },
+  "sideEffects": [
+    "./dist/styles.css"
+  ],
   "scripts": {
     "start": "webpack serve",
     "build:cjs": "webpack --config webpack.cjs.config.js",
@@ -22,7 +27,8 @@
     "build": "npm run build:cjs && npm run build:esm && npm run build:main && tsc --emitDeclarationOnly"
   },
   "files": [
-    "dist"
+    "dist",
+    "USAGE.md"
   ],
   "keywords": [],
   "author": "",
@@ -42,6 +48,7 @@
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.4",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",
     "typescript": "^5.9.2",

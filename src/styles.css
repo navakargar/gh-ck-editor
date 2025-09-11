@@ -1,0 +1,124 @@
+/* CKEditor Styles */
+.ck-editor__editable_inline {
+  height: 200px !important;
+  overflow-y: auto;
+  font-family: Inter, sans-serif !important;
+}
+.ck-dropdown__panel {
+  max-height: 200px !important;
+  overflow-y: auto;
+  z-index: 500;
+}
+
+/* HTML Preview Styles */
+/* Universal reset */
+.html-preview * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Headings */
+.html-preview h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.html-preview h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.html-preview h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.html-preview h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.html-preview h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+.html-preview h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+}
+
+/* Links */
+.html-preview a {
+  text-decoration: none;
+  color: red;
+  cursor: pointer;
+}
+
+/* Inputs */
+.html-preview :is(input, textarea, button, select) {
+  border: none;
+  background: none;
+}
+
+.html-preview button {
+  padding: 0;
+}
+
+/* Images */
+.html-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tables */
+.html-preview table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.html-preview :is(th, td) {
+  border: 1px solid black;
+}
+
+/* Blockquote */
+.html-preview blockquote {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid #ccc;
+}
+
+/* Lists */
+.html-preview ul {
+  display: block;
+  list-style-type: disc;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+.html-preview ol {
+  display: block;
+  list-style-type: decimal;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+/* Text size helpers */
+.html-preview .text-tiny {
+  font-size: 0.7em;
+}
+
+.html-preview .text-small {
+  font-size: 0.85em;
+}
+
+.html-preview .text-big {
+  font-size: 1.4em;
+}
+
+.html-preview .text-huge {
+  font-size: 1.8em;
+}
