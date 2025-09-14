@@ -7,9 +7,13 @@ export default {
   output: {
     path: path.resolve('dist'),
     filename: 'index.mjs',
-    library: { type: 'module' },
-    module: true,
+    library: {
+      type: 'module',
+    },
     clean: false,
+  },
+  experiments: {
+    outputModule: true,
   },
   experiments: { outputModule: true },
   resolve: { extensions: ['.tsx', '.ts', '.js'] },

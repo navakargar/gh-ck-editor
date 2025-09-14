@@ -1,6 +1,6 @@
 {
   "name": "gh-ck-editor",
-  "version": "1.1.8",
+  "version": "2.0.2",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -16,10 +16,7 @@
   },
   "scripts": {
     "start": "webpack serve",
-    "build:cjs": "webpack --config webpack.cjs.config.js",
-    "build:esm": "webpack --config webpack.esm.config.js",
-    "build:main": "webpack --config webpack.config.js",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:main && tsc --emitDeclarationOnly"
+    "build": "rollup -c && tsc --emitDeclarationOnly"
   },
   "files": [
     "dist"
@@ -37,11 +34,19 @@
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.4",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
+    "rollup": "^4.50.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",
     "typescript": "^5.9.2",
