@@ -3,8 +3,13 @@
   overflow-y: auto;
   font-family: Inter, sans-serif !important;
 }
+
 .ck-dropdown__panel {
   max-height: 200px !important;
   overflow-y: auto;
   z-index: 500;
+}
+
+.ck-content.ck-editor__editable :is(ol, ul) {
+  padding-left: 80px !important;
 }
