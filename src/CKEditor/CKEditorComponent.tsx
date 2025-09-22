@@ -19,6 +19,7 @@ export interface ICKEditorComponentProps {
   title?: string;
   TitleComponent?: JSXElementConstructor<any>;
   ResetWrapper?: JSXElementConstructor<any>;
+  LimitCharacterComponent?: JSXElementConstructor<any>;
   toolbar?: string[];
   heading?: IHeading[],
   fontFamily?: string[];
@@ -40,6 +41,7 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
     title,
     TitleComponent,
     ResetWrapper,
+    LimitCharacterComponent,
     toolbar,
     heading,
     fontFamily,
@@ -102,8 +104,13 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
         />
       </Wrapper >
 
-      {error && helperText && <p>{helperText}</p>}
-      {error && HelperTextComponent && !helperText && <HelperTextComponent />}
+      <div className='flex-between'>
+        <div>
+          {error && helperText && <p>{helperText}</p>}
+          {error && HelperTextComponent && !helperText && <HelperTextComponent />}
+        </div>
+        {LimitCharacterComponent && <LimitCharacterComponent />}
+      </div>
     </div>
   );
 };

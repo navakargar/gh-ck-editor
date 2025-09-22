@@ -63,6 +63,7 @@ const CKEditor: React.FC<ICKEditorComponentProps> = (props: ICKEditorComponentPr
     title,
     TitleComponent,
     ResetWrapper,
+    LimitCharacterComponent,
     toolbar,
     heading,
     fontFamily,
@@ -84,6 +85,7 @@ const CKEditor: React.FC<ICKEditorComponentProps> = (props: ICKEditorComponentPr
         title={title}
         TitleComponent={TitleComponent}
         ResetWrapper={ResetWrapper}
+        LimitCharacterComponent={LimitCharacterComponent}
         toolbar={toolbar}
         heading={heading}
         fontFamily={fontFamily}
