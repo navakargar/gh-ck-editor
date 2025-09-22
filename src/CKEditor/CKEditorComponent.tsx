@@ -98,7 +98,7 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
           config={editorConfiguration}
           data={value}
           onChange={(event, editor) => {
-            onChangeValue(editor.getData());
+            onChangeValue(addListStyles(editor.getData()));
           }}
           disabled={disabled}
         />
@@ -116,6 +116,44 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
 };
 
 export default CKEditorComponent;
+
+function addListStyles(htmlString: string) {
+  const stylesMap = {
+    ol: ["decimal", "lower-latin", "lower-roman", "upper-latin", "upper-roman"],
+    ul: ["disc", "circle", "square"]
+  };
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlString, "text/html");
+
+  function setListStyles(list: Element, level = 1) {
+    const tag = list.tagName.toLowerCase();
+    const styles = stylesMap[tag as keyof typeof stylesMap];
+    if (!styles) return;
+
+    const style = styles[level - 1] || styles[styles.length - 1];
+
+    if (style) {
+      const currentStyle = list.getAttribute("style") || "";
+      if (!/list-style-type\s*:/i.test(currentStyle)) {
+        list.setAttribute(
+          "style",
+          (currentStyle.trim() ? currentStyle.trim() + " " : "") + `list-style-type:${style};`
+        );
+      }
+    }
+
+    list.querySelectorAll(":scope > li > ol, :scope > li > ul").forEach(childList => {
+      setListStyles(childList, level + 1);
+    });
+  }
+
+  doc.querySelectorAll("ol, ul").forEach(list => {
+      setListStyles(list, 1);
+  });
+
+  return doc.body.innerHTML.trim();
+}
 
 function specialCharacterPlugin(editor: any) {
   editor.plugins.get('SpecialCharacters').addItems('Custom', [
