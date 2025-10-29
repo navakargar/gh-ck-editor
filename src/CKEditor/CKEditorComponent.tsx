@@ -53,17 +53,12 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
     className
   } = props;
 
-  const editorRef = useRef(null);
-  const [initialValue, setInitialValue] = useState<string>();
-
-  useEffect(() => {
-    if (!initialValue || !value) {
-      setInitialValue(value);
-    }
-  }, [value, initialValue]);
+  const editorRef = useRef<any>(null);
+  const isTypingRef = useRef(false);
 
   useEffect(() => {
     if (editorRef && editorRef?.current && injectionText) {
+      isTypingRef.current = true
       const editor = (editorRef?.current as any)?.editor;
       editor?.model?.change((writer: any) => {
         const insertPosition =
@@ -72,6 +67,16 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
       });
     }
   }, [injectionText]);
+
+  useEffect(() => {
+    const editor = editorRef.current?.editor;
+    if (!editor) return;
+
+    const currentData = editor.getData();
+    if (value !== currentData && !isTypingRef.current) {
+      editor.setData(value || '');
+    }
+  }, [value]);
 
   const editorConfiguration = {
     licenseKey: "GPL",
@@ -107,10 +112,11 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
           ref={editorRef}
           editor={CustomEditor as any}
           config={editorConfiguration}
-          data={initialValue}
           onChange={(event, editor) => {
             onChangeValue(addStyles(editor.getData()));
           }}
+          onFocus={() => (isTypingRef.current = true)}
+          onBlur={() => (isTypingRef.current = false)}
           disabled={disabled}
         />
       </Wrapper >
