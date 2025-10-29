@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from 'react-dom/client';
 import CKEditorComponent, { ICKEditorComponentProps } from "./CKEditor/CKEditorComponent";
 import HtmlPreviewComponent, { IHtmlPreviewComponentProps } from "./HtmlPreview/HtmlPreviewComponent";
+import getText from "./TextContent/TextContent";
 
 // Development app component
 const App: React.FC = () => {
@@ -114,3 +115,8 @@ const HtmlPreview: React.FC<IHtmlPreviewComponentProps> = (props: IHtmlPreviewCo
 
 export { HtmlPreview };
 export type { IHtmlPreviewComponentProps };
+
+const getTextContent = (html: string): string => {
+  return getText(html);
+};
+export { getTextContent };

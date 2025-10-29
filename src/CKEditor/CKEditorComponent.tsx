@@ -1,7 +1,8 @@
-import React, { CSSProperties, JSXElementConstructor, useEffect, useRef } from 'react';
+import { CSSProperties, JSXElementConstructor, useEffect, useMemo, useRef, useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import CustomEditor from 'gh-ckeditor5-custom-build';
 import './CKEditor.css';
+import Editor from 'gh-ckeditor5-custom-build';
 
 interface IHeading {
   model: 'heading1' | 'heading2' | 'heading3' | 'heading4' | 'paragraph',
@@ -53,6 +54,13 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
   } = props;
 
   const editorRef = useRef(null);
+  const [initialValue, setInitialValue] = useState<string>();
+
+  useEffect(() => {
+    if (!initialValue || !value) {
+      setInitialValue(value);
+    }
+  }, [value, initialValue]);
 
   useEffect(() => {
     if (editorRef && editorRef?.current && injectionText) {
@@ -81,7 +89,10 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
     },
     fontSize: {
       options: fontSize ?? defaultFontSize,
-    }
+    },
+    link: {
+      defaultProtocol: 'https://',
+    },
   };
   const Wrapper = ResetWrapper ?? 'div';
 
@@ -96,9 +107,9 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
           ref={editorRef}
           editor={CustomEditor as any}
           config={editorConfiguration}
-          data={value}
+          data={initialValue}
           onChange={(event, editor) => {
-            onChangeValue(addListStyles(editor.getData()));
+            onChangeValue(addStyles(editor.getData()));
           }}
           disabled={disabled}
         />
@@ -117,7 +128,7 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
 
 export default CKEditorComponent;
 
-function addListStyles(htmlString: string) {
+function addStyles(htmlString: string) {
   const stylesMap = {
     ol: ["decimal", "lower-latin", "lower-roman", "upper-latin", "upper-roman"],
     ul: ["disc", "circle", "square"]
@@ -149,12 +160,15 @@ function addListStyles(htmlString: string) {
   }
 
   doc.querySelectorAll("ol, ul").forEach(list => {
-      setListStyles(list, 1);
+    setListStyles(list, 1);
+  });
+
+  doc.querySelectorAll("a").forEach(a => {
+    a.setAttribute("target", "_blank");
   });
 
   return doc.body.innerHTML.trim();
 }
-
 function specialCharacterPlugin(editor: any) {
   editor.plugins.get('SpecialCharacters').addItems('Custom', [
     { character: '©', title: 'Copyright' },
@@ -181,6 +195,7 @@ const defaultToolbar: string[] = [
   'fontFamily',
   'specialCharacters',
   '|',
+  'link',
   'blockQuote',
   'outdent',
   'indent',
