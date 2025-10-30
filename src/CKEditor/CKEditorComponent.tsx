@@ -54,6 +54,8 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
   } = props;
 
   const editorRef = useRef<any>(null);
+  const editorWrapperRef = useRef<HTMLDivElement | null>(null);
+
   const isTypingRef = useRef(false);
   const [isEditorReady, setIsEditorReady] = useState(false);
 
@@ -68,7 +70,6 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
       });
     }
   }, [injectionText]);
-
 
   useEffect(() => {
     if (editorRef.current?.editor) {
@@ -85,6 +86,19 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
       }
     }
   }, [value, isEditorReady]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (editorWrapperRef.current && !editorWrapperRef.current.contains(event.target as Node)) {
+        isTypingRef.current = false;
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const editorConfiguration = {
     licenseKey: "GPL",
@@ -115,7 +129,7 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
       {title && <p style={{ color: error ? "red" : "" }}>{title}{isRequired && "*"}</p>}
       {TitleComponent && !title && <TitleComponent />}
 
-      <Wrapper style={{ border: error ? "0.5px solid red" : "" }}>
+      <Wrapper ref={editorWrapperRef} style={{ border: error ? "0.5px solid red" : "" }}>
         <CKEditor
           ref={editorRef}
           editor={CustomEditor as any}

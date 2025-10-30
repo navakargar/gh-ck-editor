@@ -1,6 +1,6 @@
 {
   "name": "gh-ck-editor",
-  "version": "2.1.34",
+  "version": "2.2.3",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
