@@ -55,6 +55,7 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
 
   const editorRef = useRef<any>(null);
   const isTypingRef = useRef(false);
+  const [isEditorReady, setIsEditorReady] = useState(false);
 
   useEffect(() => {
     if (editorRef && editorRef?.current && injectionText) {
@@ -68,15 +69,22 @@ const CKEditorComponent = (props: ICKEditorComponentProps) => {
     }
   }, [injectionText]);
 
-  useEffect(() => {
-    const editor = editorRef.current?.editor;
-    if (!editor) return;
 
-    const currentData = editor.getData();
-    if (value !== currentData && !isTypingRef.current) {
-      editor.setData(value || '');
+  useEffect(() => {
+    if (editorRef.current?.editor) {
+      setIsEditorReady(true);
     }
-  }, [value]);
+  }, [editorRef.current]);
+
+  useEffect(() => {
+    if (isEditorReady && editorRef.current?.editor) {
+      const editor = editorRef.current.editor;
+      const currentData = editor.getData();
+      if ((value || value === '') && !isTypingRef.current) {
+        editor.setData(value);
+      }
+    }
+  }, [value, isEditorReady]);
 
   const editorConfiguration = {
     licenseKey: "GPL",
